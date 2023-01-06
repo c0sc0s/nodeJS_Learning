@@ -1,7 +1,9 @@
 const Admin = require('../models/Admin');
+const md5 = require('md5');
 
 //数据操作
 exports.addAdmin = async function (adminObj) {
+  adminObj.loginPwd = md5(adminObj.loginPwd);
   const ins = await Admin.create(adminObj);
   return ins.toJSON();
 }
@@ -15,6 +17,7 @@ exports.deletAdmin = async function (id) {
 }
 
 exports.updateAdmin = async function (id, adminObj) {
+  adminObj.loginPwd = md5(adminObj.loginPwd);
   Admin.update(adminObj, {
     where: {
       id,
@@ -28,13 +31,14 @@ exports.updateAdmin = async function (id, adminObj) {
 //2.查询某位管理员
 //3.插叙所有管理员
 exports.login = async function (loginId, loginPwd) {
+  loginPwd = md5(loginPwd)
   const res = await Admin.findOne({
     where: {
       loginId,
       loginPwd
     }
   });
-  if (res && res.loginId === loginId && res.loginPwd === loginPwd) {
+  if (res && res.loginId === loginId) {
     return res.toJSON();
   }
   return null;

@@ -2,6 +2,14 @@ require("./models/relation");
 // require("./mock/mockStudent")
 // require("./spider/fetchBooks")
 
+const adminApi = require("./api/adminApi");
+// adminApi.addAdmin({
+//   loginId: "admin",
+//   loginPwd: "1234"
+// })
+adminApi.login("admin", "1234").then(r => console.log(r))
+
+
 // const StudentApi = require("./api/studentApi");
 // StudentApi.getStudents(1, 1, 0, "李").then(s => {
 //   console.log(res);
