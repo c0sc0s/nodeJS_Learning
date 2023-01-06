@@ -1,6 +1,6 @@
 const sequelize = require('./db');
 const { DataTypes } = require('sequelize')
-const md5 = require('md5');
+
 const Admin = sequelize.define(
   "Admin",
   {

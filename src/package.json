@@ -17,7 +17,9 @@
     "cheerio": "^1.0.0-rc.12",
     "md5": "^2.3.0",
     "mockjs": "^1.1.0",
+    "moment": "^2.29.4",
     "mysql2": "^2.3.3",
-    "sequelize": "^6.28.0"
+    "sequelize": "^6.28.0",
+    "validate.js": "^0.13.1"
   }
 }
