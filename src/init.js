@@ -1,2 +1,2 @@
 require("./models/init");
-require("./api/init")
+require("./api/init");
