@@ -13,15 +13,14 @@ const Admin = sequelize.define(
     },
   },
   {
-    createAt: false,
+    createdAt: false,
     updatedAt: false,
-    paranoid: true,
+    paranoid: false,
   }
 );
 
 (async () => {
   await Admin.sync();
-
 })()
 
 module.exports = Admin;
