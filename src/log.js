@@ -28,7 +28,7 @@ log4js.configure({
   categories: {
     sql: {
       appenders: ["sql"],
-      level: "all"
+      level: "error"
     },
     default: {
       appenders: ["default"],

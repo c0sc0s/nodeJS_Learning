@@ -78,8 +78,8 @@ exports.updateStudent = async function (id, studentObj) {
 exports.getStudents = async function (page = 1, limit = 10, sex = -1, name) {
 
   const condition = {}
-  if (sex === 1 || sex === 0) {
-    condition.sex = sex
+  if ((sex === 1) || (sex === 0)) {
+    condition.sex = !!sex
   }
 
   if (name) {
@@ -87,7 +87,6 @@ exports.getStudents = async function (page = 1, limit = 10, sex = -1, name) {
       [Op.like]: `%${name}%`
     }
   }
-
 
   const res = await Student.findAndCountAll({
     attributes: ["id", "name", "sex", "birthday", "age"],

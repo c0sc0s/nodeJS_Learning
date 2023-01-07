@@ -5,10 +5,10 @@ const md5 = require('md5');
 exports.addAdmin = async function (adminObj) {
   adminObj.loginPwd = md5(adminObj.loginPwd);
   const ins = await Admin.create(adminObj);
-  return ins.toJSON();
+  return "register successfully"
 }
 
-exports.deletAdmin = async function (id) {
+exports.deleteAdmin = async function (id) {
   Admin.destroy({
     where: {
       id,
@@ -29,7 +29,7 @@ exports.updateAdmin = async function (id, adminObj) {
 //查询
 //1.登录
 //2.查询某位管理员
-//3.插叙所有管理员
+//3.查询所有管理员
 exports.login = async function (loginId, loginPwd) {
   loginPwd = md5(loginPwd)
   const res = await Admin.findOne({
