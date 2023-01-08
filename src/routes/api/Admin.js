@@ -1,7 +1,7 @@
 const express = require('express');
 const asyncHandler = require('../helper/handlerWrap')
 const adminApi = require('../../api/adminApi');
-
+const jwt = require("../jwt");
 
 const router = express.Router();
 module.exports = router;
@@ -9,24 +9,19 @@ module.exports = router;
 
 //登录
 router.post(
-  '/',
+  '/login',
   asyncHandler(
     async (req, res) => {
       const loginId = req.body.loginId;
       const loginPwd = req.body.loginPwd;
       const result = await adminApi.login(loginId, loginPwd);
-      if (res) {
-        const value = result.id;
-        res.cookie("token", value, {
-          path: "/",
-          domain: "localhost",
-          maxAge: 7 * 24 * 3600 * 1000,
-          signed: true,
-        });
-        res.header("authorization", value);
-        return "login success";
+      if (result) {
+        jwt.publish(res, undefined, { id: result.id });
+        console.log("登录成功");
+        return "login successfully";
       }
       else {
+        console.log("登录失败");
         return null;
       }
     }

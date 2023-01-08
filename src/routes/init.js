@@ -10,7 +10,16 @@ app.listen(port, () => {
 })
 
 // CORS中间件
-app.use(require("cors")());
+app.use(require("cors")({
+  origin(origin, callback) {
+    if (!origin) {
+      callback(null, "*");
+      return;
+    }
+    callback(null, origin);
+  },
+  credentials: true,
+}));
 
 // session中间件
 app.use(session({

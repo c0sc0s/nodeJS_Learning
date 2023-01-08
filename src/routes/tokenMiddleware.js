@@ -1,5 +1,6 @@
-const { getErr } = require("../helper/getSendResult");
+const { getErr } = require("./helper/getSendResult");
 const { pathToRegexp } = require("path-to-regexp");
+const jwt = require("./jwt")
 
 const needTokenApi = [
   { method: "GET", path: "/api/student" },
@@ -21,7 +22,7 @@ module.exports = (req, res, next) => {
     next();
     return;
   }
-
+  jwt.verify(req);
 
 
   let token = req.signedCookies.token;
