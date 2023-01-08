@@ -36,7 +36,7 @@ app.use(express.static(staticRoot));
 app.use(require("cookie-parser")())
 
 // token解析中间件
-app.use(require("./api/tokenMiddleware"))
+app.use(require("./tokenMiddleware"))
 
 // Url处理中间件
 app.use(express.urlencoded({ extended: true }));
