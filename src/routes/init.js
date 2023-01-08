@@ -1,5 +1,6 @@
 const express = require("express");
 const path = require("path");
+const session = require("express-session")
 
 const app = express();
 const port = 9527;
@@ -10,6 +11,11 @@ app.listen(port, () => {
 
 // CORS中间件
 app.use(require("cors")());
+
+// session中间件
+app.use(session({
+  secret: "ccc"
+}));
 
 // 静态资源处理中间件
 const staticRoot = path.resolve(__dirname, "../public")
@@ -32,7 +38,6 @@ app.use("/api/student", require("./api/Student"));
 app.use("/api/admin", require("./api/Admin"));
 app.use("/api/class", require("./api/Class"));
 app.use("/api/book", require("./api/Book"));
-
 
 // 错误处理中间件
 app.use(require("./errorMiddleware"));
